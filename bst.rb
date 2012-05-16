@@ -60,8 +60,8 @@ class BST
 
   def traverse(node)
     if node != nil
-      puts node
       traverse(node.left)
+      puts node
       traverse(node.right)
     end
   end
