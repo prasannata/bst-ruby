@@ -36,6 +36,24 @@ class BST
     end
   end
 
+  def search(number)
+    return searchValue(@root, number)
+  end
+
+  def searchValue(node, value)
+    if node != nil
+      if node.value == value
+        return node
+      elsif value < node.value
+        return searchValue(node.left, value)
+      else
+        return searchValue(node.right, value)
+      end
+    end
+
+    return nil
+  end
+
   def walk
     traverse(@root)
   end
@@ -48,7 +66,7 @@ class BST
     end
   end
 
-  private :traverseAndAdd, :traverse
+  private :traverseAndAdd, :traverse, :searchValue
 end
 
 bst = BST.new
@@ -56,4 +74,15 @@ bst.add(10)
 bst.add(20)
 bst.add(2)
 bst.add(1)
+
+print "Walk tree\n"
+print "=========\n"
 bst.walk
+print "\n"
+
+print "Search tree\n"
+print "===========\n"
+puts bst.search(10)
+puts bst.search(2)
+puts bst.search(15)
+print "\n"
