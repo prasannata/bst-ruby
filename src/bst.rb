@@ -1,5 +1,5 @@
 #!/usr/bin/ruby
-require 'node'
+require "#{File.dirname(__FILE__)}/node"
 
 class BST
   def initialize
@@ -55,34 +55,19 @@ class BST
   end
 
   def walk
-    traverse(@root)
+    elements = Array.new
+    traverse(@root, elements)
+    return elements
   end
 
-  def traverse(node)
+  def traverse(node, elements)
     if node != nil
-      traverse(node.left)
-      puts node
-      traverse(node.right)
+      traverse(node.left, elements)
+      elements.push(node)
+      traverse(node.right, elements)
     end
   end
 
   private :traverseAndAdd, :traverse, :searchValue
 end
 
-bst = BST.new
-bst.add(10)
-bst.add(20)
-bst.add(2)
-bst.add(1)
-
-print "Walk tree\n"
-print "=========\n"
-bst.walk
-print "\n"
-
-print "Search tree\n"
-print "===========\n"
-puts bst.search(10)
-puts bst.search(2)
-puts bst.search(15)
-print "\n"
